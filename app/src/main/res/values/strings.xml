@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Recharge</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_recharge_menu">Menu</string>
+    <string name="title_activity_b_kash">bKash</string>
+    <string name="title_activity_flexiload">Flexiload</string>
+    <string name="title_activity_epin_voucher">ePin Voucher</string>
+    <string name="title_activity_report">Report</string>
+    <string name="title_activity_history">History</string>
+    <string name="title_activity_support">Support</string>
+    <string name="operator_list_prompt">Select Operator</string>
+    <string name="title_activity_initial">Initial</string>
+    <string-array name="operator_list">
+        <item>Airtel</item>
+        <item>Banglalink</item>
+        <item>Grameen Phone</item>
+        <item>Robi</item>
+        <item>Teletalk</item>
+    </string-array>
+
+</resources>

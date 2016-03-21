@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"
+        android:text="Options"
+        android:textColor="#fff"
+        android:textSize="25dp"
+        android:textStyle="normal|bold|italic"
+        />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+    <TableRow
+        android:id="@+id/recharge_menu_row_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0072C6"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:stretchColumns="*"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/user"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nazmulk750i"
+            android:layout_gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="43690.70"
+            android:layout_gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/recharge_menu_row_02"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+
+        <Button
+            android:id="@+id/FlexiLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/flexiload"
+            android:text="Flexiload"
+            android:background="@null"
+            android:textColor="#fff"
+            android:textSize="10dp"/>
+
+        <Button
+            android:id="@+id/bKashLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/bkash"
+            android:text="bKash"
+            android:background="@null"
+            android:textColor="#fff"
+            android:textSize="10dp"/>
+
+        <Button
+            android:id="@+id/bFundLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/fund"
+            android:text="Fund"
+            android:background="@null"
+            android:textColor="#fff"
+            android:textSize="10dp"/>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/recharge_menu_row_03"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/ReportLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/report"
+            android:text="Report"
+            android:background="@null"
+            android:textColor="#fff"
+            android:textSize="10dp"/>
+        <Button
+            android:id="@+id/SupportLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/support"
+            android:text="Support"
+            android:background="@null"
+            android:textColor="#fff"
+            android:textSize="10dp"/>
+
+        <Button
+            android:id="@+id/HistoryLogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/history"
+            android:text="History"
+            android:background="@null"
+            android:textColor="#fff"
+            android:textSize="10dp"/>
+
+    </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Powered by Bdlions"
+        android:textColor="@color/colorAccent"
+        android:textSize="16dp"
+        android:textStyle="normal|bold"
+        />
+
+</LinearLayout>
+
