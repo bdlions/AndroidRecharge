@@ -18,5 +18,6 @@
         <item>Robi</item>
         <item>Teletalk</item>
     </string-array>
+    <string name="title_activity_test">test</string>
 
 </resources>

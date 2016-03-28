@@ -2,29 +2,12 @@ package com.example.sampanit.recharge;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -48,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        //Intent intentContinue = new Intent("com.example.sampanit.recharge.Login");
-                        //startActivity(intentContinue);
-                        try {
+                        Intent intentContinue = new Intent("com.example.sampanit.recharge.Login");
+                        startActivity(intentContinue);
+                        /*try {
 
 
                             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -59,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
                             HttpClient client = new DefaultHttpClient();
                             //HttpPost post = new HttpPost("http://50.18.235.96:3030/processqrcode");
-                            HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
+                            //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
+                            //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/auth/login");
 
 
-                            List<NameValuePair> nameValuePairs = new ArrayList<>();
+
+                           // List<NameValuePair> nameValuePairs = new ArrayList<>();
 
                             nameValuePairs.add(new BasicNameValuePair("imei","XYZ-123-345"));
                             nameValuePairs.add(new BasicNameValuePair("mac","MAC"));
@@ -73,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                             HttpResponse response = client.execute(post);
+                            //System.out.println(response);
 
                             //Toast.makeText(this.getApplicationContext(),"Executed", Toast.LENGTH_SHORT).show();
 // Get the response
@@ -91,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         catch (Exception ex){
                             //Toast.makeText(this.getApplicationContext(),ex.getMessage(), Toast.LENGTH_SHORT).show();
                             System.out.println(ex.getMessage());
-                        }
+                        }*/
                     }
                 }
         );

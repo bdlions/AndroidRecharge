@@ -67,7 +67,6 @@
         android:padding="5dp"
         android:textSize="20dp" />
 
-
     <Button
         android:id="@+id/bLogin"
         android:layout_width="match_parent"
