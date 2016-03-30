@@ -52,15 +52,39 @@ public class bKash extends AppCompatActivity {
         editTextCellNumber = (EditText) findViewById(R.id.etMobileNumberbKash);
         editTextAmount = (EditText) findViewById(R.id.etAmountbKash);
         int  userId ;
-        userId = getIntent().getExtras().getInt("USER_ID");
-        if(userId != 0 ) {
-            userInfo.setUserId(userId);
-        }
+       //userId = getIntent().getExtras().getInt("USER_ID");
+
+
+       String userInfo = getIntent().getExtras().getString("USER_INFO");
+
+
+
+        //UserInfo abc = userInfo.getClass();
+
+       // System.out.println(userInfo);
+        /*if(userInfo != ""){
+            try {
+            JSONObject userInformation  = new JSONObject(userInfo);
+                System.out.println(userInformation);
+             //   userInfo.setUserId(userInformation.getInt(""));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            }*/
+
 
             onClickButtonbKashMenuBackListener();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String stredittext=data.getStringExtra("edittextvalue");
+            }
+        }
     }
 
     public void onClickButtonbKashMenuBackListener() {
@@ -69,6 +93,7 @@ public class bKash extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //System.out.println(userInfo);
                         Intent intentbKashMenuBack = new Intent("com.example.sampanit.recharge.RechargeMenu");
                         startActivity(intentbKashMenuBack);
                     }
@@ -88,36 +113,29 @@ public class bKash extends AppCompatActivity {
                             StrictMode.setThreadPolicy(policy);
 
                             HttpClient client = new DefaultHttpClient();
-                            //HttpPost post = new HttpPost("http://50.18.235.96:3030/processqrcode");
-                            //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
-                            HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/transaction/bkash");
+                           HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/transaction/bkash");
 
 
                             List<NameValuePair> nameValuePairs = new ArrayList<>();
+                            String phoneString = editTextCellNumber.getText().toString();
+                            String regexPattern = "^[+880|0][1][1|6|7|8|9][0-9]{8}$";
+                            boolean isValid = phoneString.matches(regexPattern);
+                            if(isValid != true){
+                                Toast.makeText(getApplicationContext(), "Please give a valid phone number !!", Toast.LENGTH_SHORT).show();
+                                return ;
+                            }
 
-                            nameValuePairs.add(new BasicNameValuePair("number", editTextCellNumber.getText().toString()));
+
+
+                            nameValuePairs.add(new BasicNameValuePair("number", phoneString));
                             nameValuePairs.add(new BasicNameValuePair("amount", editTextAmount.getText().toString()));
                             nameValuePairs.add(new BasicNameValuePair("user_id", "" + userInfo.getUserId()));
-                            //nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
 
 
-                            //System.out.println(editTextCellNumber.getText().toString());
-                            //System.out.println(editTextAmount.getText().toString());
-
-                            System.out.println(nameValuePairs.toString());
                             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                             HttpResponse response = client.execute(post);
-                            /*int responseCode = response.getStatusLine().getStatusCode();
-                            if (responseCode == 200){
-                                System.out.println(response);
-                                //Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
-                            }*/
 
-                            //System.out.println(response);
-
-                            //Toast.makeText(this.getApplicationContext(),"Executed", Toast.LENGTH_SHORT).show();
-// Get the response
                             BufferedReader rd = new BufferedReader
                                     (new InputStreamReader(response.getEntity().getContent()));
                             String result = "";
@@ -132,31 +150,20 @@ public class bKash extends AppCompatActivity {
                                 int responseCode = (int)resultEvent.get("response_code");
                                 String message = (String) resultEvent.get("message");
                                 if(responseCode == 2000){
+                                    JSONObject resultedCurrentBalanceInfo = (JSONObject) resultEvent.get("result_event");
+                                   int currentBalance =  resultedCurrentBalanceInfo.getInt("current_balance");
+                                    String cBalance = Integer.toString(currentBalance);
+                                    //userInfo.setCurrentBalance(resultedCurrentBalanceInfo.getInt("current_balance"));
+                                    //System.out.println(userInfo.getCurrentBalance());
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                    //JSONObject resultedUserInfo = (JSONObject) resultEvent.get("result_event");
-
-                                    //String userN =  userInfo.getFirstName() + userInfo.getLastName();
-                                    //userName.setText(userInfo.getFirstName().toString());
-
-
-                                    //Intent intentLogin = new Intent("com.example.sampanit.recharge.RechargeMenu");
-                                    //To pass:
-                                    //intentLogin.putExtra(RechargeMenu.class, resultedUserInfo);
-
-// To retrieve object in second Activity
-                                    // getIntent().getSerializableExtra("MyClass");
-
-                                    // startActivity(intentLogin);
-
+                                    Intent intent = new Intent();
+                                    intent.putExtra("currentBalance", cBalance);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
                                 }
 
                             }
 
-                            //JSONObject resultEvent = new JSONObject(result.toString());
-                            //System.out.println(resultEvent);
-
-
-                            //Toast.makeText(this.getApplicationContext(), line, Toast.LENGTH_SHORT).show();
 
                         } catch (Exception ex) {
                             //Toast.makeText(this.getApplicationContext(),ex.getMessage(), Toast.LENGTH_SHORT).show();

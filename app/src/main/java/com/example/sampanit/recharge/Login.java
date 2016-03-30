@@ -66,6 +66,7 @@ public class Login extends AppCompatActivity {
                             List<NameValuePair> nameValuePairs = new ArrayList<>();
 
 
+
                             nameValuePairs.add(new BasicNameValuePair("email", etLoginUserName.getText().toString()));
                             nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
                             // nameValuePairs.add(new BasicNameValuePair("email",etLoginUserName.getText().toString()));

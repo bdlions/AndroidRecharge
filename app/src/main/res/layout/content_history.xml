@@ -22,5 +22,11 @@
         android:background="@null"
         android:drawableTop="@drawable/back"/>
 
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_table"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </TableLayout>
 
 </LinearLayout>

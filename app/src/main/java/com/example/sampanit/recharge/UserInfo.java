@@ -7,6 +7,7 @@ public class UserInfo {
     private int userId;
     private String firstName;
     private String lastName;
+    private int currentBalance;
 
     public int getUserId() {
         return userId;
@@ -32,5 +33,11 @@ public class UserInfo {
         this.lastName = lastName;
     }
 
+    public int getCurrentBalance() {
+        return currentBalance;
+    }
 
+    public void setCurrentBalance(int currentBalance) {
+        this.currentBalance = currentBalance;
+    }
 }
