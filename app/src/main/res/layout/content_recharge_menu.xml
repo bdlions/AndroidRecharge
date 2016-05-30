@@ -89,7 +89,7 @@
                 android:textColor="#fff"
                 android:textSize="10dp"/>
 
-            <Button
+            <!--<Button
                 android:id="@+id/ReportLogo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -112,11 +112,11 @@
                 android:text="Support"
                 android:background="@null"
                 android:textColor="#fff"
-                android:textSize="10dp"/>
+                android:textSize="10dp"/>-->
 
         </TableRow>
 
-        <TableRow
+        <!--<TableRow
             android:id="@+id/recharge_menu_row_03"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
@@ -134,7 +134,7 @@
                 android:textColor="#fff"
                 android:textSize="10dp"/>
 
-        </TableRow>
+        </TableRow>-->
 
 
         <!--
@@ -275,7 +275,7 @@
 
     </TableLayout>
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -283,7 +283,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="16dp"
         android:textStyle="normal|bold"
-        />
+        />-->
 
 </LinearLayout>
 

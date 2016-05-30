@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -34,6 +35,7 @@ public class RechargeMenu extends AppCompatActivity {
     private static Button button_logo_history;
     private static TextView userName, currentBalance;
     UserInfo userInfo = new UserInfo();
+    private String strUserInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +56,29 @@ public class RechargeMenu extends AppCompatActivity {
         onClickButtonLogoReportListener();
         onClickButtonLogoSupportListener();
         onClickButtonLogointentHistoryListener();
-        String  extraData = "" ;
-        extraData = getIntent().getExtras().getString("EXTRA_OBJECT");
+
+        currentBalance.setText(getIntent().getExtras().getString("CURRENT_BALANCE"));
+        try
+        {
+            strUserInfo = getIntent().getExtras().getString("USER_INFO");
+            JSONObject jsonUserInfo  = new JSONObject(strUserInfo);
+            userInfo.setFirstName((String) jsonUserInfo.get("first_name"));
+            userInfo.setLastName((String) jsonUserInfo.get("last_name"));
+            userInfo.setUserId(Integer.parseInt((String) jsonUserInfo.get("user_id")));
+            String UserName = userInfo.getFirstName() +" "+   userInfo.getLastName();
+            userName.setText(UserName);
+        }
+        catch(Exception ex)
+        {
+            //handle the exception here
+        }
+
+        /*String  extraData = "" ;
+        extraData = getIntent().getExtras().getString("USER_INFO");
        if(extraData != ""){
            try {
                JSONObject extraObject = new JSONObject(extraData);
-               int balance = (int)extraObject.get("current_balance");
-               String cBalance = Integer.toString(balance);
-               currentBalance.setText(cBalance);
+
                JSONObject userInformation  = (JSONObject)extraObject.get("user_info");
 
                userInfo.setFirstName((String) userInformation.get("first_name"));
@@ -75,7 +92,7 @@ public class RechargeMenu extends AppCompatActivity {
            }
            System.out.println(userInfo.getUserId());
 
-       }
+       }*/
 
     }
 
@@ -111,8 +128,8 @@ public class RechargeMenu extends AppCompatActivity {
 
                         // Intent i = new Intent(this,  bKash.class);
                         Intent intentbKash = new Intent(getBaseContext(), bKash.class);
-                        intentbKash.putExtra("USER_ID", userInfo.toString());
-                        startActivityForResult(intentbKash, 1);
+                        intentbKash.putExtra("USER_INFO", strUserInfo);
+                        startActivityForResult(intentbKash, Constants.PAGE_BKASH);
 
                         //    Intent intentbKash = new Intent("com.example.sampanit.recharge.bKash");
                         // startActivity(intentbKash);
@@ -138,21 +155,21 @@ public class RechargeMenu extends AppCompatActivity {
 
     public void onClickButtonLogoReportListener(){
 
-        button_logo_Report = (Button)findViewById(R.id.ReportLogo);
+        /*button_logo_Report = (Button)findViewById(R.id.ReportLogo);
         button_logo_Report.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println(userInfo.getUserId());
-                        Intent intentReport = new Intent("com.example.sampanit.recharge.Report");
-                        startActivity(intentReport);
+                        //System.out.println(userInfo.getUserId());
+                        //Intent intentReport = new Intent("com.example.sampanit.recharge.Report");
+                        //startActivity(intentReport);
                     }
                 }
-        );
+        );*/
     }
 
     public void onClickButtonLogoSupportListener(){
-        button_logo_support = (Button)findViewById(R.id.SupportLogo);
+        /*button_logo_support = (Button)findViewById(R.id.SupportLogo);
         button_logo_support.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -160,28 +177,35 @@ public class RechargeMenu extends AppCompatActivity {
                         // System.out.println(userInfo.getUserId());
                         //Intent intentSupport = new Intent("com.example.sampanit.recharge.Support");
                         //startActivity(intentSupport);
-                        Intent intent = new Intent(getBaseContext(), Support.class);
-                        intent.putExtra("TestId", userInfo.getUserId());
-                        startActivityForResult(intent, 1);
+                        //Intent intent = new Intent(getBaseContext(), Support.class);
+                        //intent.putExtra("TestId", userInfo.getUserId());
+                        //startActivityForResult(intent, 1);
                     }
                 }
-        );
+        );*/
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK){
-                //String stredittext=data.getStringExtra("currentBalance");
-
+        if (requestCode == Constants.PAGE_BKASH) {
+            if(resultCode == Constants.PAGE_BKASH_BACK){
+                //nothing to do
+            }
+            else if(resultCode == Constants.PAGE_BKASH_TRANSACTION_SUCCESS){
                 currentBalance.setText(data.getStringExtra("currentBalance"));
-               // System.out.println(stredittext);
+                Toast.makeText(getApplicationContext(), "Transaction successful.", Toast.LENGTH_SHORT).show();
+            }
+            else if(resultCode == Constants.PAGE_BKASH_SERVER_UNAVAILABLE){
+                Toast.makeText(getApplicationContext(), "Check your internet connection.", Toast.LENGTH_SHORT).show();
+            }
+            else if(resultCode == Constants.PAGE_BKASH_SERVER_ERROR){
+                Toast.makeText(getApplicationContext(), data.getStringExtra("message"), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     public void onClickButtonLogointentHistoryListener(){
-        button_logo_history = (Button)findViewById(R.id.HistoryLogo);
+        /*button_logo_history = (Button)findViewById(R.id.HistoryLogo);
         button_logo_history.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -214,13 +238,10 @@ public class RechargeMenu extends AppCompatActivity {
                                 if(responseCode == 2000){
                                     JSONObject resultedUserInfo = (JSONObject) resultEvent.get("result_event");
                                     JSONArray transctionList = (JSONArray) resultedUserInfo.get("transaction_list");
-                                   // System.out.println(transctionList);
                                     Intent intent = new Intent(getBaseContext(), History.class);
                                     intent.putExtra("EXTRA_TRANSACTION_LIST", transctionList.toString());
                                     startActivity(intent);
-
                                 }
-
                             }
 
                         } catch (Exception ex) {
@@ -230,7 +251,7 @@ public class RechargeMenu extends AppCompatActivity {
 
                     }
                 }
-        );
+        );*/
     }
 
 }

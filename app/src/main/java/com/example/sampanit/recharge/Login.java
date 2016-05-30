@@ -1,5 +1,6 @@
 package com.example.sampanit.recharge;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -26,7 +28,7 @@ import java.util.List;
 public class Login extends AppCompatActivity {
     private static EditText etLoginUserName, etPassword;
 
-    private static Button button_Login;
+    private static Button buttonLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,96 +43,98 @@ public class Login extends AppCompatActivity {
 
     }
     public void onClickButtonLoginListener(){
-        button_Login = (Button)findViewById(R.id.bLogin);
-        button_Login.setOnClickListener(
+        buttonLogin = (Button)findViewById(R.id.bLogin);
+        buttonLogin.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Intent intentLogin = new Intent("com.example.sampanit.recharge.RechargeMenu");
-                        //startActivity(intentLogin);
+                        try
+                        {
+                            final ProgressDialog progress = new ProgressDialog(Login.this);
+                            progress.setTitle("Login");
+                            progress.setMessage("Authenticating user...");
+                            progress.show();
 
-                        try {
+                            final Thread loginThread = new Thread() {
+                                @Override
+                                public void run()
+                                {
+                                    try
+                                    {
+                                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                        StrictMode.setThreadPolicy(policy);
+                                        HttpClient client = new DefaultHttpClient();
+                                        //HttpPost post = new HttpPost("http://50.18.235.96:3030/processqrcode");
+                                        //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
+                                        HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/auth/login");
 
+                                        List<NameValuePair> nameValuePairs = new ArrayList<>();
 
-                            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                        nameValuePairs.add(new BasicNameValuePair("email", etLoginUserName.getText().toString()));
+                                        nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
 
-                            StrictMode.setThreadPolicy(policy);
+                                        post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                                        HttpResponse response = client.execute(post);
+                                        // Get the response
+                                        BufferedReader rd = new BufferedReader
+                                                (new InputStreamReader(response.getEntity().getContent()));
+                                        String result = "";
+                                        String line = "";
+                                        while ((line = rd.readLine()) != null) {
+                                            result += line;
+                                        }
+                                        if(result != null) {
+                                            JSONObject resultEvent = new JSONObject(result.toString());
+                                            int responseCode = (int)resultEvent.get("response_code");
+                                            String message = (String) resultEvent.get("message");
+                                            if(responseCode == 2000){
+                                                JSONObject jsonResultEvent = (JSONObject) resultEvent.get("result_event");
+                                                Intent intent = new Intent(getBaseContext(), RechargeMenu.class);
+                                                intent.putExtra("USER_INFO", jsonResultEvent.get("user_info").toString());
+                                                intent.putExtra("CURRENT_BALANCE", jsonResultEvent.get("current_balance").toString());
+                                                startActivity(intent);
+                                                progress.dismiss();
+                                            }
+                                            else
+                                            {
+                                                progress.dismiss();
+                                                runOnUiThread(new Runnable() {
+                                                    public void run() {
+                                                        Toast.makeText(getBaseContext(), "Authentication error.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                                //Toast.makeText(null, message, Toast.LENGTH_SHORT).show();
+                                            }
 
-                            HttpClient client = new DefaultHttpClient();
-                            //HttpPost post = new HttpPost("http://50.18.235.96:3030/processqrcode");
-                            //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
-                            HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/auth/login");
-
-
-
-                            List<NameValuePair> nameValuePairs = new ArrayList<>();
-
-
-
-                            nameValuePairs.add(new BasicNameValuePair("email", etLoginUserName.getText().toString()));
-                            nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
-                            // nameValuePairs.add(new BasicNameValuePair("email",etLoginUserName.getText().toString()));
-                            //nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
-
-                            System.out.println(etLoginUserName.getText().toString());
-                            System.out.println(etPassword.getText().toString());
-
-
-
-                            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                            HttpResponse response = client.execute(post);
-                            /*int responseCode = response.getStatusLine().getStatusCode();
-                            if (responseCode == 200){
-                                System.out.println(response);
-                                //Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG).show();
-                            }*/
-
-                            //System.out.println(response);
-
-                            //Toast.makeText(this.getApplicationContext(),"Executed", Toast.LENGTH_SHORT).show();
-                            // Get the response
-                            BufferedReader rd = new BufferedReader
-                                    (new InputStreamReader(response.getEntity().getContent()));
-                            String result = "";
-                            String line = "";
-                            while ((line = rd.readLine()) != null) {
-                                //textView.append(line);
-                                result += line;
-                            }
-
-                            if(result != null) {
-                                JSONObject resultEvent = new JSONObject(result.toString());
-
-                                int responseCode = (int)resultEvent.get("response_code");
-                                if(responseCode == 2000){
-                                    JSONObject resultedUserInfo = (JSONObject) resultEvent.get("result_event");
-
-                                    //String userN =  userInfo.getFirstName() + userInfo.getLastName();
-                                    //userName.setText(userInfo.getFirstName().toString());
-
-                                    Intent intent = new Intent(getBaseContext(), RechargeMenu.class);
-                                    intent.putExtra("EXTRA_OBJECT", resultedUserInfo.toString());
-                                    startActivity(intent);
-                                    //Intent intentLogin = new Intent("com.example.sampanit.recharge.RechargeMenu");
-                                    //To pass:
-                                    //intentLogin.putExtra(RechargeMenu.class, resultedUserInfo);
-
-// To retrieve object in second Activity
-                                   // getIntent().getSerializableExtra("MyClass");
-
-                                  // startActivity(intentLogin);
-
+                                        }
+                                        else
+                                        {
+                                            progress.dismiss();
+                                            runOnUiThread(new Runnable() {
+                                                public void run() {
+                                                    Toast.makeText(getBaseContext(), "Invalid response from the server.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                            //Toast.makeText(null, "Invalid response from the server.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        progress.dismiss();
+                                        runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                Toast.makeText(getBaseContext(), "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
                                 }
-
-                            }
-                            //Toast.makeText(this.getApplicationContext(), line, Toast.LENGTH_SHORT).show();
-
+                            };
+                            loginThread.start();
                         }
                         catch (Exception ex){
-                            //Toast.makeText(this.getApplicationContext(),ex.getMessage(), Toast.LENGTH_SHORT).show();
-                            System.out.println(ex.getMessage());
+                            Toast.makeText(Login.this, "System error.", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 }
         );

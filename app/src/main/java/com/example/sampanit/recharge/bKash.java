@@ -1,5 +1,6 @@
 package com.example.sampanit.recharge;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ public class bKash extends AppCompatActivity {
     private static Button buttonBkashSend;
     private static EditText editTextCellNumber, editTextAmount;
     UserInfo userInfo = new UserInfo();
+    private String strUserInfo;
+    private int currentBalance;
 
 
     /**
@@ -51,11 +54,23 @@ public class bKash extends AppCompatActivity {
         setSupportActionBar(toolbar);
         editTextCellNumber = (EditText) findViewById(R.id.etMobileNumberbKash);
         editTextAmount = (EditText) findViewById(R.id.etAmountbKash);
-        int  userId ;
-       //userId = getIntent().getExtras().getInt("USER_ID");
+        strUserInfo = getIntent().getExtras().getString("USER_INFO");
+        try
+        {
+            strUserInfo = getIntent().getExtras().getString("USER_INFO");
+            JSONObject jsonUserInfo  = new JSONObject(strUserInfo);
+            userInfo.setFirstName((String) jsonUserInfo.get("first_name"));
+            userInfo.setLastName((String) jsonUserInfo.get("last_name"));
+            userInfo.setUserId(Integer.parseInt((String) jsonUserInfo.get("user_id")));
+        }
+        catch(Exception ex)
+        {
+            //handle the exception here
+        }
+        //userId = getIntent().getExtras().getInt("USER_ID");
 
 
-       String userInfo = getIntent().getExtras().getString("USER_INFO");
+       //String userInfo = getIntent().getExtras().getString("USER_INFO");
 
 
 
@@ -93,9 +108,9 @@ public class bKash extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //System.out.println(userInfo);
-                        Intent intentbKashMenuBack = new Intent("com.example.sampanit.recharge.RechargeMenu");
-                        startActivity(intentbKashMenuBack);
+                        Intent intent = new Intent();
+                        setResult(Constants.PAGE_BKASH_BACK, intent);
+                        finish();
                     }
                 }
         );
@@ -105,69 +120,125 @@ public class bKash extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
-
-
-                            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-                            StrictMode.setThreadPolicy(policy);
-
-                            HttpClient client = new DefaultHttpClient();
-                           HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/transaction/bkash");
-
-
-                            List<NameValuePair> nameValuePairs = new ArrayList<>();
+                        try
+                        {
+                            //given cell number validation
                             String phoneString = editTextCellNumber.getText().toString();
                             String regexPattern = "^[+880|0][1][1|6|7|8|9][0-9]{8}$";
                             boolean isValid = phoneString.matches(regexPattern);
                             if(isValid != true){
-                                Toast.makeText(getApplicationContext(), "Please give a valid phone number !!", Toast.LENGTH_SHORT).show();
-                                return ;
+                                Toast.makeText(getApplicationContext(), "Please assign a valid phone number !!", Toast.LENGTH_SHORT).show();
+                                return;
                             }
-
-
-
-                            nameValuePairs.add(new BasicNameValuePair("number", phoneString));
-                            nameValuePairs.add(new BasicNameValuePair("amount", editTextAmount.getText().toString()));
-                            nameValuePairs.add(new BasicNameValuePair("user_id", "" + userInfo.getUserId()));
-
-
-                            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                            HttpResponse response = client.execute(post);
-
-                            BufferedReader rd = new BufferedReader
-                                    (new InputStreamReader(response.getEntity().getContent()));
-                            String result = "";
-                            String line = "";
-                            while ((line = rd.readLine()) != null) {
-                                //textView.append(line);
-                                result += line;
-                            }
-                            if(result != null) {
-                                JSONObject resultEvent = new JSONObject(result.toString());
-
-                                int responseCode = (int)resultEvent.get("response_code");
-                                String message = (String) resultEvent.get("message");
-                                if(responseCode == 2000){
-                                    JSONObject resultedCurrentBalanceInfo = (JSONObject) resultEvent.get("result_event");
-                                   int currentBalance =  resultedCurrentBalanceInfo.getInt("current_balance");
-                                    String cBalance = Integer.toString(currentBalance);
-                                    //userInfo.setCurrentBalance(resultedCurrentBalanceInfo.getInt("current_balance"));
-                                    //System.out.println(userInfo.getCurrentBalance());
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent();
-                                    intent.putExtra("currentBalance", cBalance);
-                                    setResult(RESULT_OK, intent);
-                                    finish();
+                            double doubleAmount = 0.0;
+                            String strAmount = editTextAmount.getText().toString();
+                            try
+                            {
+                                doubleAmount = Double.parseDouble(strAmount);
+                                if(doubleAmount < 50)
+                                {
+                                    Toast.makeText(getApplicationContext(), "Amount must be greater than 50", Toast.LENGTH_SHORT).show();
+                                    return;
                                 }
-
+                            }
+                            catch(Exception ex)
+                            {
+                                Toast.makeText(getApplicationContext(), "Please assign valid amount", Toast.LENGTH_SHORT).show();
+                                return;
                             }
 
+                            final ProgressDialog progress = new ProgressDialog(bKash.this);
+                            progress.setTitle("Processing");
+                            progress.setMessage("Wait while executing bkash transaction...");
+                            progress.show();
+                            Thread bkashThread = new Thread() {
+                                @Override
+                                public void run()
+                                {
+                                    try
+                                    {
 
-                        } catch (Exception ex) {
-                            //Toast.makeText(this.getApplicationContext(),ex.getMessage(), Toast.LENGTH_SHORT).show();
-                            System.out.println(ex.getMessage());
+                                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                        StrictMode.setThreadPolicy(policy);
+                                        HttpClient client = new DefaultHttpClient();
+                                        HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/transaction/demobkash");
+
+                                        List<NameValuePair> nameValuePairs = new ArrayList<>();
+
+                                        nameValuePairs.add(new BasicNameValuePair("number", editTextCellNumber.getText().toString()));
+                                        nameValuePairs.add(new BasicNameValuePair("amount", editTextAmount.getText().toString()));
+                                        nameValuePairs.add(new BasicNameValuePair("user_id", "" + userInfo.getUserId()));
+
+
+                                        post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                                        HttpResponse response = client.execute(post);
+                                        BufferedReader rd = new BufferedReader
+                                                (new InputStreamReader(response.getEntity().getContent()));
+                                        String result = "";
+                                        String line = "";
+                                        while ((line = rd.readLine()) != null) {
+                                            result += line;
+                                        }
+                                        if(result != null) {
+                                            JSONObject resultEvent = new JSONObject(result.toString());
+
+                                            int responseCode = 0;
+                                            try
+                                            {
+                                                responseCode = (int)resultEvent.get("response_code");
+                                            }
+                                            catch(Exception ex)
+                                            {
+
+                                            }
+                                            if(responseCode == 2000){
+                                                JSONObject resultedCurrentBalanceInfo = (JSONObject) resultEvent.get("result_event");
+                                                int currentBalance =  resultedCurrentBalanceInfo.getInt("current_balance");
+                                                String cBalance = Integer.toString(currentBalance);
+                                                progress.dismiss();
+                                                Intent intent = new Intent();
+                                                intent.putExtra("currentBalance", cBalance);
+                                                setResult(Constants.PAGE_BKASH_TRANSACTION_SUCCESS, intent);
+                                                finish();
+                                            }
+                                            else
+                                            {
+                                                String message = "";
+                                                try
+                                                {
+                                                    message = (String) resultEvent.get("message");
+                                                }
+                                                catch(Exception ex)
+                                                {
+                                                    message = "Transaction error!!";
+                                                }
+                                                Intent intent = new Intent();
+                                                intent.putExtra("message", message);
+                                                setResult(Constants.PAGE_BKASH_SERVER_ERROR, intent);
+                                                finish();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Intent intent = new Intent();
+                                            intent.putExtra("message", "Invalid response from the server.");
+                                            setResult(Constants.PAGE_BKASH_SERVER_ERROR, intent);
+                                            finish();
+                                        }
+
+                                    }
+                                    catch (Exception ex) {
+                                        Intent intent = new Intent();
+                                        setResult(Constants.PAGE_BKASH_SERVER_UNAVAILABLE, intent);
+                                        finish();
+                                    }
+                                    progress.dismiss();
+                                }
+                            };
+                            bkashThread.start();
+                        }
+                        catch (Exception ex){
+                            Toast.makeText(getApplicationContext(), "Internal Error.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
