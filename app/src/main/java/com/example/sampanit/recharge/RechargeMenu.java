@@ -3,10 +3,13 @@ package com.example.sampanit.recharge;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,24 +38,92 @@ public class RechargeMenu extends AppCompatActivity {
     private static Button button_logo_history;
     private static TextView userName, currentBalance;
     UserInfo userInfo = new UserInfo();
+    private boolean topUpFlag = false;
+    private  int[] service_list;
+    GridView grid;
     private String strUserInfo;
+    List<Integer> history_services = new ArrayList<Integer>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        service_list = getIntent().getExtras().getIntArray("service_list");
+
+        List<String> grid_services = new ArrayList<String>();
+
+        List<Integer> grid_image = new ArrayList<Integer>();
+
+
+        for (int i = 0; i < service_list.length; i++) {
+            if(service_list[i] == Constants.SERVICE_TYPE_ID_BKASH_CASHIN){
+                grid_services.add("bKash");
+                grid_image.add( R.drawable.bkash);
+                history_services.add(Constants.SERVICE_TYPE_ID_BKASH_CASHIN);
+            }else if(service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_GP
+                    || service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_AIRTEL
+                    ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK
+                    ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_ROBI
+                    ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_TELETALK){
+                topUpFlag = true;
+
+            }
+        }
+        if(topUpFlag != false){
+            grid_services.add("TopUp");
+            grid_image.add( R.drawable.flexiload);
+            history_services.add(Constants.SERVICE_TYPE_TOPUP_HISTORY_FLAG);
+
+        }
+        grid_services.add("History");
+        grid_image.add( R.drawable.history);
+
+
+
         userName = (TextView)findViewById(R.id.userName);
         currentBalance = (TextView)findViewById(R.id.currentBalance);
 
+
+        CustomGrid adapter = new CustomGrid(RechargeMenu.this, grid_services, grid_image);
+        grid=(GridView)findViewById(R.id.list);
+        grid.setAdapter(adapter);
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                switch (position) {
+                    case 0:
+                        //Toast.makeText(RechargeMenu.this, "Bkash Feature is Not Available", Toast.LENGTH_SHORT).show();
+                        Intent intentbKash = new Intent(getBaseContext(), bKash.class);
+                        intentbKash.putExtra("USER_INFO", strUserInfo);
+                        startActivityForResult(intentbKash, Constants.PAGE_BKASH);
+                        break;
+                    case 1:
+                        Toast.makeText(RechargeMenu.this, "Recharge Feature is Not Available", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Intent intentFlexiload = new Intent(getBaseContext(), History.class);
+                        intentFlexiload.putExtra("USER_INFO", strUserInfo);
+                        intentFlexiload.putIntegerArrayListExtra("history_services", (ArrayList<Integer>) history_services);
+                        startActivity(intentFlexiload);
+                        break;
+
+
+                }
+            }
+        });
 
        /*
         onClickButtonFlexiloadListener();
         onClickButtonLogoFundListener();
         */
-        onClickButtonLogobKashListener();
+        //     onClickButtonLogobKashListener();
         onClickButtonLogoReportListener();
         onClickButtonLogoSupportListener();
         onClickButtonLogointentHistoryListener();
@@ -72,8 +143,8 @@ public class RechargeMenu extends AppCompatActivity {
         {
             //handle the exception here
         }
-
-        /*String  extraData = "" ;
+/*
+        String  extraData = "" ;
         extraData = getIntent().getExtras().getString("USER_INFO");
        if(extraData != ""){
            try {
@@ -92,8 +163,9 @@ public class RechargeMenu extends AppCompatActivity {
            }
            System.out.println(userInfo.getUserId());
 
-       }*/
+       }
 
+*/
     }
 
 
@@ -119,24 +191,24 @@ public class RechargeMenu extends AppCompatActivity {
 
     */
 
-    public void onClickButtonLogobKashListener(){
-        button_logo_bKash = (Button)findViewById(R.id.bKashLogo);
-        button_logo_bKash.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        // Intent i = new Intent(this,  bKash.class);
-                        Intent intentbKash = new Intent(getBaseContext(), bKash.class);
-                        intentbKash.putExtra("USER_INFO", strUserInfo);
-                        startActivityForResult(intentbKash, Constants.PAGE_BKASH);
-
-                        //    Intent intentbKash = new Intent("com.example.sampanit.recharge.bKash");
-                        // startActivity(intentbKash);
-                    }
-                }
-        );
-    }
+//    public void onClickButtonLogobKashListener(){
+//        button_logo_bKash = (Button)findViewById(R.id.bKashLogo);
+//        button_logo_bKash.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        // Intent i = new Intent(this,  bKash.class);
+//                        Intent intentbKash = new Intent(getBaseContext(), bKash.class);
+//                        intentbKash.putExtra("USER_INFO", strUserInfo);
+//                        startActivityForResult(intentbKash, Constants.PAGE_BKASH);
+//
+//                        //    Intent intentbKash = new Intent("com.example.sampanit.recharge.bKash");
+//                        // startActivity(intentbKash);
+//                    }
+//                }
+//        );
+//    }
 /*
     public void onClickButtonLogoFundListener(){
         button_logo_fund = (Button)findViewById(R.id.bFundLogo);

@@ -19,18 +19,18 @@ public class epinVoucher extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        onClickButtonFundMenuBackListener();
+        //onClickButtonFundMenuBackListener();
     }
-    public void onClickButtonFundMenuBackListener(){
-        button_fund_menu_back = (Button)findViewById(R.id.bFundMenuBack);
-        button_fund_menu_back.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intentFundadMenuBack = new Intent("com.example.sampanit.recharge.RechargeMenu");
-                        startActivity(intentFundadMenuBack);
-                    }
-                }
-        );
-    }
+//    public void onClickButtonFundMenuBackListener(){
+//        button_fund_menu_back = (Button)findViewById(R.id.bFundMenuBack);
+//        button_fund_menu_back.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intentFundadMenuBack = new Intent("com.example.sampanit.recharge.RechargeMenu");
+//                        startActivity(intentFundadMenuBack);
+//                    }
+//                }
+//        );
+//    }
 }

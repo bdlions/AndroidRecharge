@@ -12,22 +12,26 @@ android:orientation="vertical"
 android:weightSum="1"
 tools:showIn="@layout/activity_report">
 
-<Button
-    android:id="@+id/bReportMenuBack"
-    android:layout_width="25dp"
-    android:layout_height="25dp"
-    android:layout_gravity="left"
-    android:layout_marginTop="80dp"
-    android:layout_marginBottom="20dp"
-    android:background="@null"
-    android:drawableTop="@drawable/back"/>
+<!--<Button-->
+    <!--android:id="@+id/bReportMenuBack"-->
+    <!--android:layout_width="25dp"-->
+    <!--android:layout_height="25dp"-->
+    <!--android:layout_gravity="left"-->
+    <!--android:layout_marginTop="80dp"-->
+    <!--android:layout_marginBottom="20dp"-->
+    <!--android:background="@null"-->
+    <!--android:drawableTop="@drawable/back"/>-->
+    <!--<TableLayout-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/main_table"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="match_parent">-->
+    <!--</TableLayout>-->
 
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
 
-        android:id="@+id/main_table"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-    </TableLayout>
-    </LinearLayout>
+        android:id="@+id/reportListView" />
+</LinearLayout>
 

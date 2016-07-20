@@ -2,11 +2,13 @@ package com.example.sampanit.recharge;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -92,6 +94,15 @@ public class Login extends AppCompatActivity {
                                                 Intent intent = new Intent(getBaseContext(), RechargeMenu.class);
                                                 intent.putExtra("USER_INFO", jsonResultEvent.get("user_info").toString());
                                                 intent.putExtra("CURRENT_BALANCE", jsonResultEvent.get("current_balance").toString());
+                                                int[] service_list = {
+                                                        Constants.SERVICE_TYPE_ID_BKASH_CASHIN,
+                                                        Constants.SERVICE_TYPE_ID_TOPUP_GP,
+                                                        Constants.SERVICE_TYPE_ID_TOPUP_ROBI,
+                                                        Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK,
+                                                        Constants.SERVICE_TYPE_ID_TOPUP_AIRTEL,
+                                                        Constants.SERVICE_TYPE_ID_TOPUP_TELETALK,
+                                                };
+                                                intent.putExtra("service_list", service_list);
                                                 startActivity(intent);
                                                 progress.dismiss();
                                             }

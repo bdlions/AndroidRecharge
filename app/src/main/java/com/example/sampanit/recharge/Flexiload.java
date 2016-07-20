@@ -19,19 +19,19 @@ public class Flexiload extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        onClickButtonFlexiloadMenuBackListener();
+      //  onClickButtonFlexiloadMenuBackListener();
 
     }
-    public void onClickButtonFlexiloadMenuBackListener(){
-        button_flexiload_menu_back = (Button)findViewById(R.id.bFlexiloadMenuBack);
-        button_flexiload_menu_back.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intentFlexiloadMenuBack = new Intent("com.example.sampanit.recharge.RechargeMenu");
-                        startActivity(intentFlexiloadMenuBack);
-                    }
-                }
-        );
-    }
+//    public void onClickButtonFlexiloadMenuBackListener(){
+//        button_flexiload_menu_back = (Button)findViewById(R.id.bFlexiloadMenuBack);
+//        button_flexiload_menu_back.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intentFlexiloadMenuBack = new Intent("com.example.sampanit.recharge.RechargeMenu");
+//                        startActivity(intentFlexiloadMenuBack);
+//                    }
+//                }
+//        );
+//    }
 }

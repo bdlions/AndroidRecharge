@@ -12,14 +12,14 @@
     android:weightSum="1"
     tools:showIn="@layout/activity_epin_voucher">
 
-    <Button
-        android:id="@+id/bFundMenuBack"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="80dp"
-        android:background="@null"
-        android:drawableTop="@drawable/back"/>
+    <!--<Button-->
+        <!--android:id="@+id/bFundMenuBack"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:background="@null"-->
+        <!--android:drawableTop="@drawable/back"/>-->
 
     <ImageView
         android:layout_width="150dp"

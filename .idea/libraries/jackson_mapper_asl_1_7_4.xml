@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jackson-mapper-asl-1.7.4">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/jackson-mapper-asl-1.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../Sampan IT/AndroidStudioProjects/AndroidRecharge/.idea/libraries/jackson-mapper-asl-1.7.4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

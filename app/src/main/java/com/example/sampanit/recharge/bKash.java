@@ -2,12 +2,14 @@ package com.example.sampanit.recharge;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class bKash extends AppCompatActivity {
-    private static Button button_bKash_menu_back;
+    //private static Button button_bKash_menu_back;
     private static Button buttonBkashSend;
     private static EditText editTextCellNumber, editTextAmount;
     UserInfo userInfo = new UserInfo();
@@ -52,6 +54,7 @@ public class bKash extends AppCompatActivity {
         setContentView(R.layout.activity_b_kash);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         editTextCellNumber = (EditText) findViewById(R.id.etMobileNumberbKash);
         editTextAmount = (EditText) findViewById(R.id.etAmountbKash);
         strUserInfo = getIntent().getExtras().getString("USER_INFO");
@@ -103,17 +106,17 @@ public class bKash extends AppCompatActivity {
     }
 
     public void onClickButtonbKashMenuBackListener() {
-        button_bKash_menu_back = (Button) findViewById(R.id.bbKashMenuBack);
-        button_bKash_menu_back.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        setResult(Constants.PAGE_BKASH_BACK, intent);
-                        finish();
-                    }
-                }
-        );
+//        button_bKash_menu_back = (Button) findViewById(R.id.bbKashMenuBack);
+//        button_bKash_menu_back.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent();
+//                        setResult(Constants.PAGE_BKASH_BACK, intent);
+//                        finish();
+//                    }
+//                }
+//        );
 
         buttonBkashSend = (Button) findViewById(R.id.bSendNowbKash);
         buttonBkashSend.setOnClickListener(

@@ -11,22 +11,43 @@
     android:orientation="vertical"
     android:weightSum="1"
     tools:showIn="@layout/activity_history">
-
-    <Button
-        android:id="@+id/bHistoryMenuBack"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"
-        android:background="@null"
-        android:drawableTop="@drawable/back"/>
-
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/main_table"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-    </TableLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"
+        android:text="History"
+        android:textColor="#fff"
+        android:textSize="25dp"
+        android:textStyle="normal|bold|italic" />
+
+    <!--<ListView-->
+        <!--android:id="@+id/list_view_history"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</ListView>-->
+    <GridView
+        android:id="@+id/history_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <!--<Button-->
+        <!--android:id="@+id/bHistoryMenuBack"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:background="@null"-->
+        <!--android:drawableTop="@drawable/back"/>-->
+
+    <!--<TableLayout-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/main_table"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="match_parent">-->
+    <!--</TableLayout>-->
+
 
 </LinearLayout>

@@ -12,14 +12,14 @@
     android:weightSum="1"
     tools:showIn="@layout/activity_flexiload">
 
-    <Button
-        android:id="@+id/bFlexiloadMenuBack"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="80dp"
-        android:background="@null"
-        android:drawableTop="@drawable/back"/>
+    <!--<Button-->
+        <!--android:id="@+id/bFlexiloadMenuBack"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:background="@null"-->
+        <!--android:drawableTop="@drawable/back"/>-->
 
     <TextView
         android:layout_width="wrap_content"

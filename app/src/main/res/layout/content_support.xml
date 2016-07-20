@@ -12,15 +12,15 @@
     android:weightSum="1"
     tools:showIn="@layout/activity_support">
 
-    <Button
-        android:id="@+id/bSupportMenuBack"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="20dp"
-        android:background="@null"
-        android:drawableTop="@drawable/back"/>
+    <!--<Button-->
+        <!--android:id="@+id/bSupportMenuBack"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:layout_marginTop="80dp"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:background="@null"-->
+        <!--android:drawableTop="@drawable/back"/>-->
 
     <EditText
         android:id="@+id/etTest"

@@ -19,5 +19,6 @@
         <item>Teletalk</item>
     </string-array>
     <string name="title_activity_test">test</string>
+    <string name="title_activity_b_kash_history">bKashHistory</string>
 
 </resources>

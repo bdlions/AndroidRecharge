@@ -11,7 +11,6 @@
     android:orientation="vertical"
     android:weightSum="1"
     tools:showIn="@layout/activity_login">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,70 +20,63 @@
         android:text="Recharge Telecom"
         android:textColor="#fff"
         android:textSize="25dp"
-        android:textStyle="normal|bold|italic"
-        />
+        android:textStyle="normal|bold|italic" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/load"
-        />
+        android:src="@drawable/load" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="User Name or Email"
         android:textColor="#fff"
-        android:textSize="20dp" />
-
+        android:textSize="16dp" />
     <EditText
         android:id="@+id/etLoginUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
-        android:hint="Enter Email"
+        android:hint="User Name or Email"
+        android:textColor="#000"
         android:inputType="text"
         android:padding="5dp"
-        android:textSize="20dp" />
-
+        android:textSize="16dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:text="Password"
         android:textColor="#fff"
-        android:textSize="20dp" />
-
+        android:textSize="16dp" />
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:background="#fff"
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:padding="5dp"
-        android:textSize="20dp" />
-
+        android:textSize="16dp" />
     <Button
         android:id="@+id/bLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="30dp"
         android:text="Login"
         android:background="#0072C6"
         android:textColor="#fff"
-        android:textSize="20dp"
-        />
+        android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:text="Powered by Bdlions"
+        android:layout_gravity="center"
         android:textColor="@color/colorAccent"
         android:textSize="16dp"
-        android:textStyle="normal|bold"
-        />
-
+        android:textStyle="normal|bold" />
 </LinearLayout>
 

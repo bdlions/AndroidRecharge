@@ -26,7 +26,7 @@ public class Support extends AppCompatActivity {
 
         }
 
-        onClickButtonSupportMenuBackListener();
+        //onClickButtonSupportMenuBackListener();
 
         //Intent intent = new Intent();
        // intent.putExtra("edittextvalue","value_here");
@@ -42,19 +42,19 @@ public class Support extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }
-    public void onClickButtonSupportMenuBackListener(){
-        button_support_menu_back = (Button)findViewById(R.id.bSupportMenuBack);
-        button_support_menu_back.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getBaseContext(),RechargeMenu.class);
-                        intent.putExtra("Obj", "value_here");
-                        setResult(Activity.RESULT_OK, intent);
-                        finish();
-                      //  super.onBackPressed();
-                    }
-                }
-        );
-    }
+//    public void onClickButtonSupportMenuBackListener(){
+//        button_support_menu_back = (Button)findViewById(R.id.bSupportMenuBack);
+//        button_support_menu_back.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(getBaseContext(),RechargeMenu.class);
+//                        intent.putExtra("Obj", "value_here");
+//                        setResult(Activity.RESULT_OK, intent);
+//                        finish();
+//                      //  super.onBackPressed();
+//                    }
+//                }
+//        );
+//    }
 }

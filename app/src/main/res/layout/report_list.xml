@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_report_operator_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:padding="2dp"
+        android:src="@drawable/flexiload"/>
+<TextView
+    android:id="@+id/tv_operator_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+</RelativeLayout>
+
+    <!-- reference url=  https://www.youtube.com/watch?v=99C_UpLcBRk-->

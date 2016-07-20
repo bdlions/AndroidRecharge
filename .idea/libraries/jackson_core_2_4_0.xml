@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jackson-core-2.4.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/.idea/libraries/jackson-core-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../Sampan IT/AndroidStudioProjects/AndroidRecharge/.idea/libraries/jackson-core-2.4.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
