@@ -21,15 +21,6 @@
         android:textColor="#fff"
         android:textSize="25dp"
         android:textStyle="normal|bold|italic" />
-<!--
-    <Button
-        android:id="@+id/bbKashMenuBack"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="80dp"
-        android:background="@null"
-        android:drawableTop="@drawable/back"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
-        android:hint="Example: 01XXXXXXXXX"
+        android:hint="01XXXXXXXXX"
         android:textColor="#000"
         android:inputType="text"
         android:padding="5dp"
@@ -61,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
-        android:hint="Example: 1000"
+        android:hint="1000"
         android:textColor="#000"
         android:inputType="text"
         android:padding="5dp"
@@ -77,23 +68,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
             android:text="Cash In"
             android:background="#fff"
             android:textColor="#333"
-            android:textSize="18dp"
-            android:checked="true"
-            />
-
-        <!--<RadioButton
-            android:id="@+id/rbCashOutbKash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cash Out"
-            android:background="#fff"
-            android:padding="10dp"
-            android:textColor="#333"
-            android:textSize="20dp"
-            /> -->
+            android:textSize="16dp"
+            android:checked="true" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rbCashOutbKash"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:text="Cash Out"-->
+            <!--android:background="#fff"-->
+            <!--android:textColor="#333"-->
+            <!--android:textSize="16dp" />-->
     </RadioGroup>
     <Button
         android:id="@+id/bSendNowbKash"
@@ -104,5 +94,4 @@
         android:background="#0072C6"
         android:textColor="#fff"
         android:textSize="18dp" />
-
 </LinearLayout>

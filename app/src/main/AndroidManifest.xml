@@ -61,26 +61,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Flexiload"
-            android:label="@string/title_activity_flexiload"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.example.sampanit.recharge.Flexiload" />
+        <!--<activity-->
+            <!--android:name=".epinVoucher"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:theme="@style/AppTheme.NoActionBar">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.example.sampanit.recharge.epinVoucher" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".epinVoucher"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="com.example.sampanit.recharge.epinVoucher" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
         <!-- <activity -->
         <!-- android:name=".Report" -->
         <!-- android:label="@string/title_activity_report" -->
@@ -92,6 +82,16 @@
         <!-- <category android:name="android.intent.category.DEFAULT" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
+        <!--<activity-->
+            <!--android:name=".Support"-->
+            <!--android:label="@string/title_activity_support"-->
+            <!--android:theme="@style/AppTheme.NoActionBar">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.example.sampanit.recharge.Support" />-->
+
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
         <activity
             android:name=".History"
             android:label="@string/title_activity_history"
@@ -103,25 +103,94 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Support"
+            android:name=".bKashHistory"
             android:label="@string/title_activity_support"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.Support" />
+                <action android:name="com.example.sampanit.recharge.bKashHistory" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".bKashHistory"
+            android:name=".TopUpHistory"
             android:label="@string/title_activity_support"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.Support" />
+                <action android:name="com.example.sampanit.recharge.TopUpHistory" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TopUp"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.TopUp" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DBBL"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.DBBL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".mCash"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.mCash" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UCash"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.UCash" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DBBLHistory"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.DBBLHistory" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".mCashHistory"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.mCashHistory" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UCashHistory"
+            android:label="@string/title_activity_support"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.example.sampanit.recharge.UCashHistory" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

@@ -20,5 +20,14 @@
     </string-array>
     <string name="title_activity_test">test</string>
     <string name="title_activity_b_kash_history">bKashHistory</string>
+    <string name="title_activity_top_up_history">TopUpHistory</string>
+    <string name="title_activity_top_up">TopUp</string>
+    <string name="title_activity_dbbl">DBBL</string>
+    <string name="title_activity_m_cash">mCash</string>
+    <string name="title_activity_u_cash">uCash</string>
+    <string name="title_activity_ucash">UCash</string>
+    <string name="title_activity_dbblhistory">DBBLHistory</string>
+    <string name="title_activity_m_cash_history">mCashHistory</string>
+    <string name="title_activity_ucash_history">UCashHistory</string>
 
 </resources>

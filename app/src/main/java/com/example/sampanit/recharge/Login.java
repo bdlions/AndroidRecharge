@@ -96,6 +96,9 @@ public class Login extends AppCompatActivity {
                                                 intent.putExtra("CURRENT_BALANCE", jsonResultEvent.get("current_balance").toString());
                                                 int[] service_list = {
                                                         Constants.SERVICE_TYPE_ID_BKASH_CASHIN,
+                                                        Constants.SERVICE_TYPE_ID_DBBL_CASHIN,
+                                                        Constants.SERVICE_TYPE_ID_MCASH_CASHIN,
+                                                        Constants.SERVICE_TYPE_ID_UCASH_CASHIN,
                                                         Constants.SERVICE_TYPE_ID_TOPUP_GP,
                                                         Constants.SERVICE_TYPE_ID_TOPUP_ROBI,
                                                         Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK,

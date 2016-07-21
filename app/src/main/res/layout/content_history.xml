@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/background_image"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
@@ -21,17 +21,11 @@
         android:textColor="#fff"
         android:textSize="25dp"
         android:textStyle="normal|bold|italic" />
-
-    <!--<ListView-->
-        <!--android:id="@+id/list_view_history"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent">-->
-    <!--</ListView>-->
     <GridView
         android:id="@+id/history_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:numColumns="2" />
     <!--<Button-->
         <!--android:id="@+id/bHistoryMenuBack"-->
         <!--android:layout_width="25dp"-->
@@ -41,13 +35,4 @@
         <!--android:layout_marginBottom="20dp"-->
         <!--android:background="@null"-->
         <!--android:drawableTop="@drawable/back"/>-->
-
-    <!--<TableLayout-->
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:id="@+id/main_table"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="match_parent">-->
-    <!--</TableLayout>-->
-
-
 </LinearLayout>

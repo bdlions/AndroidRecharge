@@ -40,10 +40,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.example.sampanit.recharge.Constants.FIRST_COLUMN;
-import static com.example.sampanit.recharge.Constants.SECOND_COLUMN;
-import static com.example.sampanit.recharge.Constants.THIRD_COLUMN;
-import static com.example.sampanit.recharge.Constants.FOURTH_COLUMN;
+//import static com.example.sampanit.recharge.Constants.FIRST_COLUMN;
+//import static com.example.sampanit.recharge.Constants.SECOND_COLUMN;
+//import static com.example.sampanit.recharge.Constants.THIRD_COLUMN;
+//import static com.example.sampanit.recharge.Constants.FOURTH_COLUMN;
 
 public class History extends AppCompatActivity {
     private static Button button_report_menu_back;
@@ -98,9 +98,22 @@ public class History extends AppCompatActivity {
                 grid_image.add(R.drawable.flexiload);
                 grid_text_list.add("TopUp History");
 
-            }else if(history_services.get(i) == Constants.SERVICE_TYPE_ID_BKASH_CASHIN){
+            }
+            else if(history_services.get(i) == Constants.SERVICE_TYPE_ID_BKASH_CASHIN){
                 grid_image.add( R.drawable.bkash);
                 grid_text_list.add("bKash History");
+            }
+            else if(history_services.get(i) == Constants.SERVICE_TYPE_ID_DBBL_CASHIN){
+                grid_image.add( R.drawable.dbbl);
+                grid_text_list.add("DBBL History");
+            }
+            else if(history_services.get(i) == Constants.SERVICE_TYPE_ID_MCASH_CASHIN){
+                grid_image.add( R.drawable.mcash);
+                grid_text_list.add("mCash History");
+            }
+            else if(history_services.get(i) == Constants.SERVICE_TYPE_ID_UCASH_CASHIN){
+                grid_image.add( R.drawable.ucash);
+                grid_text_list.add("UCash History");
             }
         }
 
@@ -218,10 +231,26 @@ public class History extends AppCompatActivity {
                         //intentbKash.putIntegerArrayListExtra("history_services", (ArrayList<Integer>) history_services);
                         startActivity(intentbKash);
                         break;
+
                     case 1:
-                        //Toast.makeText(RechargeMenu.this, "Recharge Feature is Not Available", Toast.LENGTH_SHORT).show();
+                        Intent intentDBBL = new Intent(getBaseContext(), DBBLHistory.class);
+                        startActivity(intentDBBL);
                         break;
 
+                    case 2:
+                        Intent intentmCash = new Intent(getBaseContext(), mCashHistory.class);
+                        startActivity(intentmCash);
+                        break;
+
+                    case 3:
+                        Intent intentUCash = new Intent(getBaseContext(), UCashHistory.class);
+                        startActivity(intentUCash);
+                        break;
+
+                    case 4:
+                        Intent intentTopUp = new Intent(getBaseContext(), TopUpHistory.class);
+                        startActivity(intentTopUp);
+                        break;
 
                 }
             }
@@ -234,7 +263,7 @@ public class History extends AppCompatActivity {
 
 //        ListView listView = (ListView) findViewById(R.id.list_view_history);
 //        populateList();
-//        HistoryListViewAdapter adapter = new HistoryListViewAdapter(this, historyList);
+//        bKashHistoryListViewAdapter adapter = new bKashHistoryListViewAdapter(this, historyList);
 //        listView.setAdapter(adapter);
 
 

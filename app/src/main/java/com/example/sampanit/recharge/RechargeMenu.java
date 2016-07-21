@@ -65,7 +65,19 @@ public class RechargeMenu extends AppCompatActivity {
                 grid_services.add("bKash");
                 grid_image.add( R.drawable.bkash);
                 history_services.add(Constants.SERVICE_TYPE_ID_BKASH_CASHIN);
-            }else if(service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_GP
+            } else if(service_list[i] == Constants.SERVICE_TYPE_ID_DBBL_CASHIN){
+                grid_services.add("DBBL");
+                grid_image.add( R.drawable.dbbl);
+                history_services.add(Constants.SERVICE_TYPE_ID_DBBL_CASHIN);
+            } else if(service_list[i] == Constants.SERVICE_TYPE_ID_MCASH_CASHIN){
+                grid_services.add("mCash");
+                grid_image.add( R.drawable.mcash);
+                history_services.add(Constants.SERVICE_TYPE_ID_MCASH_CASHIN);
+            }  else if(service_list[i] == Constants.SERVICE_TYPE_ID_UCASH_CASHIN){
+                grid_services.add("UCash");
+                grid_image.add( R.drawable.ucash);
+                history_services.add(Constants.SERVICE_TYPE_ID_UCASH_CASHIN);
+            }  else if(service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_GP
                     || service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_AIRTEL
                     ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK
                     ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_ROBI
@@ -104,14 +116,31 @@ public class RechargeMenu extends AppCompatActivity {
                         intentbKash.putExtra("USER_INFO", strUserInfo);
                         startActivityForResult(intentbKash, Constants.PAGE_BKASH);
                         break;
+
                     case 1:
-                        Toast.makeText(RechargeMenu.this, "Recharge Feature is Not Available", Toast.LENGTH_SHORT).show();
+                        Intent intentDBBL = new Intent(getBaseContext(), DBBL.class);
+                        startActivity(intentDBBL);
                         break;
+
                     case 2:
-                        Intent intentFlexiload = new Intent(getBaseContext(), History.class);
-                        intentFlexiload.putExtra("USER_INFO", strUserInfo);
-                        intentFlexiload.putIntegerArrayListExtra("history_services", (ArrayList<Integer>) history_services);
-                        startActivity(intentFlexiload);
+                        Intent intentmCash = new Intent(getBaseContext(), mCash.class);
+                        startActivity(intentmCash);
+                        break;
+                    case 3:
+//                        Toast.makeText(RechargeMenu.this, "Recharge Feature is Not Available", Toast.LENGTH_SHORT).show();
+                        Intent intentUCash = new Intent(getBaseContext(), UCash.class);
+                        startActivity(intentUCash);
+                        break;
+                    case 4:
+//                        Toast.makeText(RechargeMenu.this, "Recharge Feature is Not Available", Toast.LENGTH_SHORT).show();
+                        Intent intentTopUp = new Intent(getBaseContext(), TopUp.class);
+                        startActivity(intentTopUp);
+                        break;
+                    case 5:
+                        Intent intentHistory = new Intent(getBaseContext(), History.class);
+                        intentHistory.putExtra("USER_INFO", strUserInfo);
+                        intentHistory.putIntegerArrayListExtra("history_services", (ArrayList<Integer>) history_services);
+                        startActivity(intentHistory);
                         break;
 
 
@@ -120,7 +149,7 @@ public class RechargeMenu extends AppCompatActivity {
         });
 
        /*
-        onClickButtonFlexiloadListener();
+
         onClickButtonLogoFundListener();
         */
         //     onClickButtonLogobKashListener();
@@ -170,26 +199,7 @@ public class RechargeMenu extends AppCompatActivity {
 
 
 
-/*
 
-    public void onClickButtonFlexiloadListener(){
-
-
-
-        button_logo_flexiload = (Button)findViewById(R.id.FlexiLogo);
-        button_logo_flexiload.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        System.out.println(userInfo.getUserId());
-                        Intent intentFlexiload = new Intent("com.example.sampanit.recharge.Flexiload");
-                        startActivity(intentFlexiload);
-                    }
-                }
-        );
-    }
-
-    */
 
 //    public void onClickButtonLogobKashListener(){
 //        button_logo_bKash = (Button)findViewById(R.id.bKashLogo);

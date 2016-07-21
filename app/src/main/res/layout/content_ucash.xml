@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:showIn="@layout/activity_ucash">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"
+        android:text="UCash"
+        android:textColor="#fff"
+        android:textSize="25dp"
+        android:textStyle="normal|bold|italic" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="30dp"
+        android:text="Enter Mobile Number"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+    <EditText
+        android:id="@+id/etMobileNumberUCash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="01XXXXXXXXX"
+        android:textColor="#000"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="30dp"
+        android:text="Enter Amount"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+    <EditText
+        android:id="@+id/etAmountUCash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="1000"
+        android:textColor="#000"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textSize="16dp" />
+    <RadioGroup
+        android:id="@+id/radioTypeUCash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <RadioButton
+            android:id="@+id/rbCashInUCash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Cash In"
+            android:background="#fff"
+            android:textColor="#333"
+            android:textSize="16dp"
+            android:checked="true" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rbCashOutUCash"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:text="Cash Out"-->
+            <!--android:background="#fff"-->
+            <!--android:textColor="#333"-->
+            <!--android:textSize="16dp"/>-->
+    </RadioGroup>
+    <Button
+        android:id="@+id/bSendNowUCash"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="30dp"
+        android:text="Send Now"
+        android:background="#0072C6"
+        android:textColor="#fff"
+        android:textSize="18dp" />
+</LinearLayout>
