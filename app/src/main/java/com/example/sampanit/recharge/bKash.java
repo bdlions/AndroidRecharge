@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class bKash extends AppCompatActivity {
+    private static String baseUrl = "";
+    private static int userId = 0;
+    private static String sessionId = "";
     //private static Button button_bKash_menu_back;
     private static Button buttonBkashSend;
     private static EditText editTextCellNumber, editTextAmount;
@@ -57,6 +60,9 @@ public class bKash extends AppCompatActivity {
 
         editTextCellNumber = (EditText) findViewById(R.id.etMobileNumberbKash);
         editTextAmount = (EditText) findViewById(R.id.etAmountbKash);
+        baseUrl = getIntent().getExtras().getString("BASE_URL");
+        userId = getIntent().getExtras().getInt("USER_ID");
+        sessionId = getIntent().getExtras().getString("SESSION_ID");
         strUserInfo = getIntent().getExtras().getString("USER_INFO");
         try
         {
@@ -164,14 +170,14 @@ public class bKash extends AppCompatActivity {
                                         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                                         StrictMode.setThreadPolicy(policy);
                                         HttpClient client = new DefaultHttpClient();
-                                        HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/transaction/demobkash");
+                                        HttpPost post = new HttpPost(baseUrl+"androidapp/transaction/bkash");
 
                                         List<NameValuePair> nameValuePairs = new ArrayList<>();
 
                                         nameValuePairs.add(new BasicNameValuePair("number", editTextCellNumber.getText().toString()));
                                         nameValuePairs.add(new BasicNameValuePair("amount", editTextAmount.getText().toString()));
                                         nameValuePairs.add(new BasicNameValuePair("user_id", "" + userInfo.getUserId()));
-
+                                        nameValuePairs.add(new BasicNameValuePair("session_id", "" + sessionId));
 
                                         post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                                         HttpResponse response = client.execute(post);
@@ -204,8 +210,14 @@ public class bKash extends AppCompatActivity {
                                                 setResult(Constants.PAGE_BKASH_TRANSACTION_SUCCESS, intent);
                                                 finish();
                                             }
-                                            else
+                                            else if(responseCode == 5001)
                                             {
+                                                progress.dismiss();
+                                                Intent intent = new Intent();
+                                                setResult(Constants.PAGE_BKASH_SESSION_EXPIRED, intent);
+                                                finish();
+                                            }
+                                            else {
                                                 String message = "";
                                                 try
                                                 {

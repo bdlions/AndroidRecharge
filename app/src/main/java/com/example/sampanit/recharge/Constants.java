@@ -5,11 +5,39 @@ package com.example.sampanit.recharge;
  */
 public class Constants {
     public static final int PAGE_BKASH = 1;
-
     public static final int PAGE_BKASH_BACK = 1;
     public static final int PAGE_BKASH_TRANSACTION_SUCCESS = 2;
     public static final int PAGE_BKASH_SERVER_UNAVAILABLE = 3;
     public static final int PAGE_BKASH_SERVER_ERROR= 4;
+    public static final int PAGE_BKASH_SESSION_EXPIRED = 5;
+
+    public static final int PAGE_DBBL = 2;
+    public static final int PAGE_DBBL_BACK = 1;
+    public static final int PAGE_DBBL_TRANSACTION_SUCCESS = 2;
+    public static final int PAGE_DBBL_SERVER_UNAVAILABLE = 3;
+    public static final int PAGE_DBBL_SERVER_ERROR= 4;
+    public static final int PAGE_DBBL_SESSION_EXPIRED = 5;
+
+    public static final int PAGE_MCASH = 3;
+    public static final int PAGE_MCASH_BACK = 1;
+    public static final int PAGE_MCASH_TRANSACTION_SUCCESS = 2;
+    public static final int PAGE_MCASH_SERVER_UNAVAILABLE = 3;
+    public static final int PAGE_MCASH_SERVER_ERROR= 4;
+    public static final int PAGE_MCASH_SESSION_EXPIRED = 5;
+
+    public static final int PAGE_UCASH = 4;
+    public static final int PAGE_UCASH_BACK = 1;
+    public static final int PAGE_UCASH_TRANSACTION_SUCCESS = 2;
+    public static final int PAGE_UCASH_SERVER_UNAVAILABLE = 3;
+    public static final int PAGE_UCASH_SERVER_ERROR= 4;
+    public static final int PAGE_UCASH_SESSION_EXPIRED = 5;
+
+    public static final int PAGE_TOPUP = 5;
+    public static final int PAGE_TOPUP_TRANSACTION_SUCCESS = 2;
+    public static final int PAGE_TOPUP_SERVER_UNAVAILABLE = 3;
+    public static final int PAGE_TOPUP_SERVER_ERROR=4;
+    public static final int PAGE_TOPUP_SESSION_EXPIRED = 5;
+
 
     public static final int SERVICE_TYPE_ID_BKASH_CASHIN = 1;
     public static final int SERVICE_TYPE_ID_DBBL_CASHIN = 2;

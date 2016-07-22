@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Login extends AppCompatActivity {
-    private static EditText etLoginUserName, etPassword;
-
+    private static EditText etOPCode, etLoginUserName, etPassword;
+    private static String baseUrl = "";
     private static Button buttonLogin;
 
     @Override
@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        etOPCode = (EditText) findViewById(R.id.etOPCode);
         etLoginUserName = (EditText) findViewById(R.id.etLoginUserName);
         etPassword = (EditText) findViewById(R.id.etPassword);
         onClickButtonLoginListener();
@@ -52,12 +53,12 @@ public class Login extends AppCompatActivity {
                     public void onClick(View v) {
                         try
                         {
-                            final ProgressDialog progress = new ProgressDialog(Login.this);
-                            progress.setTitle("Login");
-                            progress.setMessage("Authenticating user...");
-                            progress.show();
+                            final ProgressDialog progressInit = new ProgressDialog(Login.this);
+                            progressInit.setTitle("Login");
+                            progressInit.setMessage("Authenticating user...");
+                            progressInit.show();
 
-                            final Thread loginThread = new Thread() {
+                            final Thread initThread = new Thread() {
                                 @Override
                                 public void run()
                                 {
@@ -66,14 +67,10 @@ public class Login extends AppCompatActivity {
                                         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                                         StrictMode.setThreadPolicy(policy);
                                         HttpClient client = new DefaultHttpClient();
-                                        //HttpPost post = new HttpPost("http://50.18.235.96:3030/processqrcode");
-                                        //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
-                                        HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/androidapp/auth/login");
+                                        HttpPost post = new HttpPost("http://199.33.127.59:4040/getbaseurl");
 
                                         List<NameValuePair> nameValuePairs = new ArrayList<>();
-
-                                        nameValuePairs.add(new BasicNameValuePair("email", etLoginUserName.getText().toString()));
-                                        nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
+                                        nameValuePairs.add(new BasicNameValuePair("code", etOPCode.getText().toString()));
 
                                         post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                                         HttpResponse response = client.execute(post);
@@ -87,54 +84,142 @@ public class Login extends AppCompatActivity {
                                         }
                                         if(result != null) {
                                             JSONObject resultEvent = new JSONObject(result.toString());
-                                            int responseCode = (int)resultEvent.get("response_code");
-                                            String message = (String) resultEvent.get("message");
+                                            int responseCode = (int)resultEvent.get("responseCode");
                                             if(responseCode == 2000){
-                                                JSONObject jsonResultEvent = (JSONObject) resultEvent.get("result_event");
-                                                Intent intent = new Intent(getBaseContext(), RechargeMenu.class);
-                                                intent.putExtra("USER_INFO", jsonResultEvent.get("user_info").toString());
-                                                intent.putExtra("CURRENT_BALANCE", jsonResultEvent.get("current_balance").toString());
-                                                int[] service_list = {
-                                                        Constants.SERVICE_TYPE_ID_BKASH_CASHIN,
-                                                        Constants.SERVICE_TYPE_ID_DBBL_CASHIN,
-                                                        Constants.SERVICE_TYPE_ID_MCASH_CASHIN,
-                                                        Constants.SERVICE_TYPE_ID_UCASH_CASHIN,
-                                                        Constants.SERVICE_TYPE_ID_TOPUP_GP,
-                                                        Constants.SERVICE_TYPE_ID_TOPUP_ROBI,
-                                                        Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK,
-                                                        Constants.SERVICE_TYPE_ID_TOPUP_AIRTEL,
-                                                        Constants.SERVICE_TYPE_ID_TOPUP_TELETALK,
-                                                };
-                                                intent.putExtra("service_list", service_list);
-                                                startActivity(intent);
-                                                progress.dismiss();
+                                                baseUrl = (String) resultEvent.get("result");
+                                                if( baseUrl == null || baseUrl.equals(""))
+                                                {
+                                                    progressInit.dismiss();
+                                                    runOnUiThread(new Runnable() {
+                                                        public void run() {
+                                                            Toast.makeText(getBaseContext(), "Invalid Code.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                }
+                                                //progressInit.dismiss();
+                                                try
+                                                {
+                                                    //final ProgressDialog progressLogin = new ProgressDialog(Login.this);
+                                                    //progressLogin.setTitle("Login");
+                                                    //progressLogin.setMessage("Authenticating user...");
+                                                    //progressLogin.show();
+
+                                                    final Thread loginThread = new Thread() {
+                                                        @Override
+                                                        public void run()
+                                                        {
+                                                            try
+                                                            {
+                                                                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                                                StrictMode.setThreadPolicy(policy);
+                                                                HttpClient client = new DefaultHttpClient();
+                                                                //HttpPost post = new HttpPost("http://50.18.235.96:3030/processqrcode");
+                                                                //HttpPost post = new HttpPost("http://122.144.10.249/rechargeserver/welcome/app_test");
+                                                                HttpPost post = new HttpPost(baseUrl+"androidapp/auth/login");
+
+                                                                List<NameValuePair> nameValuePairs = new ArrayList<>();
+                                                                nameValuePairs.add(new BasicNameValuePair("email", etLoginUserName.getText().toString()));
+                                                                nameValuePairs.add(new BasicNameValuePair("password", etPassword.getText().toString()));
+
+                                                                post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                                                                HttpResponse response = client.execute(post);
+                                                                // Get the response
+                                                                BufferedReader rd = new BufferedReader
+                                                                        (new InputStreamReader(response.getEntity().getContent()));
+                                                                String result = "";
+                                                                String line = "";
+                                                                while ((line = rd.readLine()) != null) {
+                                                                    result += line;
+                                                                }
+                                                                if(result != null) {
+                                                                    JSONObject resultEvent = new JSONObject(result.toString());
+                                                                    int responseCode = (int)resultEvent.get("response_code");
+                                                                    String message = (String) resultEvent.get("message");
+                                                                    if(responseCode == 2000){
+                                                                        JSONObject jsonResultEvent = (JSONObject) resultEvent.get("result_event");
+                                                                        Intent intent = new Intent(getBaseContext(), RechargeMenu.class);
+                                                                        intent.putExtra("BASE_URL", baseUrl);
+                                                                        intent.putExtra("USER_INFO", jsonResultEvent.get("user_info").toString());
+                                                                        intent.putExtra("CURRENT_BALANCE", jsonResultEvent.get("current_balance").toString());
+                                                                        intent.putExtra("SESSION_ID", jsonResultEvent.get("session_id").toString());
+                                                                        int[] service_list = {
+                                                                                Constants.SERVICE_TYPE_ID_BKASH_CASHIN,
+                                                                                Constants.SERVICE_TYPE_ID_DBBL_CASHIN,
+                                                                                Constants.SERVICE_TYPE_ID_MCASH_CASHIN,
+                                                                                Constants.SERVICE_TYPE_ID_UCASH_CASHIN,
+                                                                                Constants.SERVICE_TYPE_ID_TOPUP_GP,
+                                                                                Constants.SERVICE_TYPE_ID_TOPUP_ROBI,
+                                                                                Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK,
+                                                                                Constants.SERVICE_TYPE_ID_TOPUP_AIRTEL,
+                                                                                Constants.SERVICE_TYPE_ID_TOPUP_TELETALK,
+                                                                        };
+                                                                        intent.putExtra("service_list", service_list);
+                                                                        startActivity(intent);
+                                                                        progressInit.dismiss();
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        progressInit.dismiss();
+                                                                        runOnUiThread(new Runnable() {
+                                                                            public void run() {
+                                                                                Toast.makeText(getBaseContext(), "Authentication error.", Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        });
+                                                                        //Toast.makeText(null, message, Toast.LENGTH_SHORT).show();
+                                                                    }
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    progressInit.dismiss();
+                                                                    runOnUiThread(new Runnable() {
+                                                                        public void run() {
+                                                                            Toast.makeText(getBaseContext(), "Invalid response from the server.", Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    });
+                                                                    //Toast.makeText(null, "Invalid response from the server.", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                            catch(Exception ex)
+                                                            {
+                                                                progressInit.dismiss();
+                                                                runOnUiThread(new Runnable() {
+                                                                    public void run() {
+                                                                        Toast.makeText(getBaseContext(), "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                    };
+                                                    loginThread.start();
+                                                }
+                                                catch (Exception ex){
+                                                    Toast.makeText(Login.this, "System error.", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
                                             else
                                             {
-                                                progress.dismiss();
+                                                progressInit.dismiss();
                                                 runOnUiThread(new Runnable() {
                                                     public void run() {
-                                                        Toast.makeText(getBaseContext(), "Authentication error.", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getBaseContext(), "Invalid Code.", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
-                                                //Toast.makeText(null, message, Toast.LENGTH_SHORT).show();
                                             }
-
                                         }
                                         else
                                         {
-                                            progress.dismiss();
+                                            progressInit.dismiss();
                                             runOnUiThread(new Runnable() {
                                                 public void run() {
                                                     Toast.makeText(getBaseContext(), "Invalid response from the server.", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
-                                            //Toast.makeText(null, "Invalid response from the server.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     catch(Exception ex)
                                     {
-                                        progress.dismiss();
+                                        progressInit.dismiss();
                                         runOnUiThread(new Runnable() {
                                             public void run() {
                                                 Toast.makeText(getBaseContext(), "Check your internet connection.", Toast.LENGTH_SHORT).show();
@@ -143,12 +228,11 @@ public class Login extends AppCompatActivity {
                                     }
                                 }
                             };
-                            loginThread.start();
+                            initThread.start();
                         }
                         catch (Exception ex){
                             Toast.makeText(Login.this, "System error.", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 }
         );

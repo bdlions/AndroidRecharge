@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="30dp"
-        android:text="UCash History"
+        android:text="MCash History"
         android:textColor="#fff"
         android:textSize="25dp"
         android:textStyle="normal|bold|italic" />
