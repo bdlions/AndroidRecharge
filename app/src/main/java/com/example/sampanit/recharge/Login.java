@@ -20,6 +20,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -142,7 +143,15 @@ public class Login extends AppCompatActivity {
                                                                         intent.putExtra("USER_INFO", jsonResultEvent.get("user_info").toString());
                                                                         intent.putExtra("CURRENT_BALANCE", jsonResultEvent.get("current_balance").toString());
                                                                         intent.putExtra("SESSION_ID", jsonResultEvent.get("session_id").toString());
-                                                                        int[] service_list = {
+                                                                        //getting service id list
+                                                                        JSONArray serviceIdList = jsonResultEvent.getJSONArray("service_id_list");
+                                                                        int[] serviceList = new int[serviceIdList.length()];
+                                                                        for (int i = 0; i < serviceIdList.length(); i++)
+                                                                        {
+                                                                            int serviceId = (int)serviceIdList.get(i);
+                                                                            serviceList[i] = serviceId;
+                                                                        }
+                                                                        /*int[] service_list = {
                                                                                 Constants.SERVICE_TYPE_ID_BKASH_CASHIN,
                                                                                 Constants.SERVICE_TYPE_ID_DBBL_CASHIN,
                                                                                 Constants.SERVICE_TYPE_ID_MCASH_CASHIN,
@@ -152,8 +161,8 @@ public class Login extends AppCompatActivity {
                                                                                 Constants.SERVICE_TYPE_ID_TOPUP_BANGLALINK,
                                                                                 Constants.SERVICE_TYPE_ID_TOPUP_AIRTEL,
                                                                                 Constants.SERVICE_TYPE_ID_TOPUP_TELETALK,
-                                                                        };
-                                                                        intent.putExtra("service_list", service_list);
+                                                                        };*/
+                                                                        intent.putExtra("service_list", serviceList);
                                                                         startActivity(intent);
                                                                         progressInit.dismiss();
                                                                     }
