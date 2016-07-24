@@ -29,25 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="30dp"
-        android:text="OPCode"
-        android:textColor="#fff"
-        android:textSize="16dp" />
-    <EditText
-        android:id="@+id/etOPCode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:hint="Code"
-        android:textColor="#000"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textSize="16dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:text="User Name or Email"
         android:textColor="#fff"
         android:textSize="16dp" />
@@ -55,6 +37,7 @@
         android:id="@+id/etLoginUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:background="#fff"
         android:hint="User Name or Email"
         android:textColor="#000"
@@ -72,9 +55,27 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:background="#fff"
         android:hint="Enter Password"
         android:inputType="textPassword"
+        android:padding="5dp"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="OPCode"
+        android:textColor="#fff"
+        android:textSize="16dp" />
+    <EditText
+        android:id="@+id/etOPCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="Code"
+        android:textColor="#000"
+        android:inputType="text"
         android:padding="5dp"
         android:textSize="16dp" />
     <Button

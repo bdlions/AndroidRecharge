@@ -61,16 +61,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name=".epinVoucher"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:theme="@style/AppTheme.NoActionBar">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.example.sampanit.recharge.epinVoucher" />-->
+        <!-- <activity -->
+        <!-- android:name=".epinVoucher" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.example.sampanit.recharge.epinVoucher" /> -->
 
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <!-- <activity -->
         <!-- android:name=".Report" -->
         <!-- android:label="@string/title_activity_report" -->
@@ -82,16 +83,17 @@
         <!-- <category android:name="android.intent.category.DEFAULT" /> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-        <!--<activity-->
-            <!--android:name=".Support"-->
-            <!--android:label="@string/title_activity_support"-->
-            <!--android:theme="@style/AppTheme.NoActionBar">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.example.sampanit.recharge.Support" />-->
+        <!-- <activity -->
+        <!-- android:name=".Support" -->
+        <!-- android:label="@string/title_activity_support" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.example.sampanit.recharge.Support" /> -->
 
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <activity
             android:name=".History"
             android:label="@string/title_activity_history"
@@ -192,5 +194,26 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CreateReseller"
+            android:label="@string/title_activity_create_reseller"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Payment"
+            android:label="@string/title_activity_payment"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ChangePassword"
+            android:label="@string/title_activity_change_password"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Reseller"
+            android:label="@string/title_activity_reseller"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Account"
+            android:label="@string/title_activity_account"
+            android:theme="@style/AppTheme"></activity>
     </application>
+
 </manifest>

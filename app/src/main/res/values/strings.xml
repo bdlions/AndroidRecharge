@@ -29,5 +29,11 @@
     <string name="title_activity_dbblhistory">DBBLHistory</string>
     <string name="title_activity_m_cash_history">mCashHistory</string>
     <string name="title_activity_ucash_history">UCashHistory</string>
+    <string name="title_activity_reseller">Reseller</string>
+    <string name="title_activity_create__reseller">Create_Reseller</string>
+    <string name="title_activity_create_reseller">CreateReseller</string>
+    <string name="title_activity_payment">Payment</string>
+    <string name="title_activity_change_password">ChangePassword</string>
+    <string name="title_activity_account">Account</string>
 
 </resources>

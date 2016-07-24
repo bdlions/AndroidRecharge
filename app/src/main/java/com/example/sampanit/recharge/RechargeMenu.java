@@ -86,7 +86,6 @@ public class RechargeMenu extends AppCompatActivity {
                     ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_ROBI
                     ||  service_list[i] == Constants.SERVICE_TYPE_ID_TOPUP_TELETALK){
                 topUpFlag = true;
-
             }
         }
         if(topUpFlag != false){
@@ -95,9 +94,13 @@ public class RechargeMenu extends AppCompatActivity {
             history_services.add(Constants.SERVICE_TYPE_TOPUP_HISTORY_FLAG);
 
         }
+
         grid_services.add("History");
         grid_image.add( R.drawable.history);
-
+        grid_services.add("Reseller");
+        grid_image.add( R.drawable.reseller);
+        grid_services.add("Account");
+        grid_image.add( R.drawable.account);
 
 
         userName = (TextView)findViewById(R.id.userName);
@@ -162,7 +165,21 @@ public class RechargeMenu extends AppCompatActivity {
                         startActivity(intentHistory);
                         break;
 
+                    case 6:
+                        Intent intentReseller = new Intent(getBaseContext(), Reseller.class);
+                        intentReseller.putExtra("USER_INFO", strUserInfo);
+                        intentReseller.putExtra("SESSION_ID", sessionId);
+                        intentReseller.putExtra("BASE_URL", baseUrl);
+                        startActivity(intentReseller);
+                        break;
 
+                    case 7:
+                        Intent intentAccount = new Intent(getBaseContext(), Account.class);
+                        intentAccount.putExtra("BASE_URL", baseUrl);
+                        intentAccount.putExtra("USER_INFO", strUserInfo);
+                        intentAccount.putIntegerArrayListExtra("history_services", (ArrayList<Integer>) history_services);
+                        startActivity(intentAccount);
+                        break;
                 }
             }
         });
