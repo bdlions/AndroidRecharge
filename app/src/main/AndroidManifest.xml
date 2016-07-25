@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sampanit.recharge">
+    package="com.bdlions.recharge">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,204 +16,161 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--
-         <activity
-             android:name=".MainActivity"
-             android:label="@string/app_name"
-             android:theme="@style/AppTheme.NoActionBar">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
-         <activity
-             android:name=".Login"
-             android:label="@string/title_activity_login"
-             android:theme="@style/AppTheme.NoActionBar">
-             <intent-filter>
-                 <action android:name="com.example.sampanit.recharge.Login" />
-                 <category android:name="android.intent.category.DEFAULT" />
-             </intent-filter>
-         </activity>
-        -->
         <activity
             android:name=".RechargeMenu"
-            android:label="@string/title_activity_recharge_menu"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.RechargeMenu" />
-
+                <action android:name="com.bdlions.recharge.RechargeMenu" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".bKash"
-            android:label="@string/title_activity_b_kash"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.bKash" />
-
+                <action android:name="com.bdlions.recharge.bKash" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!-- <activity -->
-        <!-- android:name=".epinVoucher" -->
-        <!-- android:label="@string/app_name" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.example.sampanit.recharge.epinVoucher" /> -->
-
-
-        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <!-- <activity -->
-        <!-- android:name=".Report" -->
-        <!-- android:label="@string/title_activity_report" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.example.sampanit.recharge.Report" /> -->
-
-
-        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <!-- <activity -->
-        <!-- android:name=".Support" -->
-        <!-- android:label="@string/title_activity_support" -->
-        <!-- android:theme="@style/AppTheme.NoActionBar"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.example.sampanit.recharge.Support" /> -->
-
-
-        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
         <activity
             android:name=".History"
-            android:label="@string/title_activity_history"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.History" />
-
+                <action android:name="com.bdlions.recharge.History" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".bKashHistory"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.bKashHistory" />
-
+                <action android:name="com.bdlions.recharge.bKashHistory" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".TopUpHistory"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.TopUpHistory" />
-
+                <action android:name="com.bdlions.recharge.TopUpHistory" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".TopUp"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.TopUp" />
-
+                <action android:name="com.bdlions.recharge.TopUp" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".DBBL"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.DBBL" />
-
+                <action android:name="com.bdlions.recharge.DBBL" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".mCash"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.mCash" />
-
+                <action android:name="com.bdlions.recharge.mCash" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".UCash"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.UCash" />
-
+                <action android:name="com.bdlions.recharge.UCash" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".DBBLHistory"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.DBBLHistory" />
-
+                <action android:name="com.bdlions.recharge.DBBLHistory" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".mCashHistory"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.mCashHistory" />
-
+                <action android:name="com.bdlions.recharge.mCashHistory" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".UCashHistory"
-            android:label="@string/title_activity_support"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="com.example.sampanit.recharge.UCashHistory" />
-
+                <action android:name="com.bdlions.recharge.UCashHistory" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".CreateReseller"
-            android:label="@string/title_activity_create_reseller"
-            android:theme="@style/AppTheme" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.bdlions.recharge.CreateReseller" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Payment"
-            android:label="@string/title_activity_payment"
-            android:theme="@style/AppTheme" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.bdlions.recharge.Payment" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ChangePassword"
-            android:label="@string/title_activity_change_password"
-            android:theme="@style/AppTheme" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.bdlions.recharge.ChangePassword" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Reseller"
-            android:label="@string/title_activity_reseller"
-            android:theme="@style/AppTheme" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.bdlions.recharge.Reseller" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Account"
-            android:label="@string/title_activity_account"
-            android:theme="@style/AppTheme"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.bdlions.recharge.Account" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>
