@@ -30,6 +30,7 @@ public class Payment extends AppCompatActivity {
         String paymentTransactionList = getIntent().getExtras().getString("PAYMENT_TRANSACTION_LIST");
 
         ListView listView = (ListView) findViewById(R.id.list_view_payment_history);
+        paymentHistoryList = new ArrayList<HashMap<String, String>>();
         populateList(paymentTransactionList);
         PaymentHistoryListViewAdapter adapter = new PaymentHistoryListViewAdapter(this, paymentHistoryList);
         listView.setAdapter(adapter);
@@ -38,9 +39,9 @@ public class Payment extends AppCompatActivity {
     private void populateList(String paymentTList) {
         //table header
         HashMap<String, String> temp = new HashMap<String, String>();
-        temp.put(FIRST_COLUMN, "User Name");
+        temp.put(FIRST_COLUMN, "Amount");
         temp.put(SECOND_COLUMN, "Date");
-        temp.put(THIRD_COLUMN, "Status Type");
+        temp.put(THIRD_COLUMN, "Status");
         paymentHistoryList.add(temp);
         try
         {
@@ -48,9 +49,9 @@ public class Payment extends AppCompatActivity {
             for (int i = 0; i < paymentTransactionArray.length(); i++) {
                 JSONObject transactionObject = paymentTransactionArray.getJSONObject(i);
                 HashMap<String, String> temp2 = new HashMap<String, String>();
-                temp2.put(FIRST_COLUMN, (String)transactionObject.get("user_name"));
+                temp2.put(FIRST_COLUMN, transactionObject.getDouble("amount")+"");
                 temp2.put(SECOND_COLUMN, (String)transactionObject.get("date"));
-                temp2.put(THIRD_COLUMN, (String)transactionObject.get("status_type"));
+                temp2.put(THIRD_COLUMN, (String)transactionObject.get("status"));
                 paymentHistoryList.add(temp2);
             }
         }

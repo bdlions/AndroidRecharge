@@ -129,29 +129,40 @@ public class CreateReseller extends AppCompatActivity {
                                             } catch (Exception ex) {
 
                                             }
+
                                             if (responseCode == 2000) {
-                                                String message = "Reseller Add Successfully!!";
-                                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                            } else if (responseCode == 5001) {
-                                                Toast.makeText(getApplicationContext(), "Your session is expired", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                String message = "";
-                                                try {
-                                                    message = (String) resultEvent.get("message");
-                                                } catch (Exception ex) {
-                                                    message = "Reseller Creation error!!";
-                                                }
-                                                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                                progress.dismiss();
+                                                runOnUiThread(new Runnable() {
+                                                    public void run() {
+                                                        Toast.makeText(getBaseContext(), "Reseller is created successfully.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+                                            }else {
+                                                progress.dismiss();
+                                                runOnUiThread(new Runnable() {
+                                                    public void run() {
+                                                        Toast.makeText(getBaseContext(), "Error while creating the reseller.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
                                             }
                                         } else {
-                                          String  message = "Invalid response from the server.";
-                                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                                            progress.dismiss();
+                                            runOnUiThread(new Runnable() {
+                                                public void run() {
+                                                    Toast.makeText(getBaseContext(), "Invalid response from the server.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                         }
 
                                     } catch (Exception ex) {
-                                        Toast.makeText(getApplicationContext(), "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                                        progress.dismiss();
+                                        runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                Toast.makeText(getBaseContext(), "Check your internet connection.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
-                                    progress.dismiss();
                                 }
                             };
                             createResellerThread.start();
